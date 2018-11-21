@@ -12,4 +12,9 @@ public class ManagerController extends GenericController{
 	private ModelAndView index(Model model) throws Exception {		
 		return new ModelAndView("/index");
 	}
+	
+	@RequestMapping("/how-i-work")
+	private ModelAndView howIWork(Model model) throws Exception {		
+		return new ModelAndView("/how-i-work");
+	}
 }
