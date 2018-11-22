@@ -14,26 +14,26 @@
 		</div>
 			
 		<div class="content-how-i-work-message">						
-			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px">
-				&ldquo;Olá! Você me diz qual produto quer comprar&rdquo;
+			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 60%">
+				1. Você me diz qual produto quer comprar.
 			</div>				
 		</div>
 									
 		<div class="content-how-i-work-message">					
-			<div class="robot-message" style="float: right; background-color: #dcf8c6; color: #075e54; padding-bottom: 16px">
-				&ldquo;Eu procuro recomendações que o produto recebeu em várias lojas virtuais&rdquo;
+			<div class="robot-message" style="float: right; background-color: #dcf8c6; color: #075e54; padding-bottom: 16px; max-width: 60%">
+				2. Eu procuro recomendações que o produto recebeu em várias lojas virtuais.
 			</div>				
 		</div>
 					
 		<div class="content-how-i-work-message">					
-			<div class="robot-message" style="background-color: #c4dff6; color: #095280; padding-bottom: 16px">
-				&ldquo;Eu mostro pra você quantas pessoas recomendaram o produto&rdquo;
+			<div class="robot-message" style="background-color: #c4dff6; color: #095280; padding-bottom: 16px; max-width: 60%">
+				3. Eu mostro pra você quantas pessoas recomendaram o produto!
 			</div>						
 		</div>
 					
 		<div class="content-how-i-work-message">					
-			<div class="robot-message" style="float: right; background-color: #ffdc80; color: #f77737; padding-bottom: 16px">
-				&ldquo;Agora é com você!&rdquo;
+			<div class="robot-message" style="float: right; background-color: #ffdc80; color: #f77737; padding-bottom: 16px; max-width: 60%">
+				4. Que tal começar a usar?
 			</div>						
 		</div>
 					

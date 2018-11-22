@@ -95,7 +95,7 @@ input.input-human-message:focus {
 	font-weight: bold; 
 	letter-spacing: -3px; 
 	font-size: 24px; 
-	color: #1d2129;
+	color: #738f93;
 }
 
 .content-how-i-work-message{
@@ -103,7 +103,6 @@ input.input-human-message:focus {
 	width: 100%; 
 	display: table; 
 	text-align: left; 
-	font-size: 18px;
 }
 
 
@@ -133,6 +132,10 @@ input.input-human-message:focus {
 .link{
 	color: #1d2129;
 	text-decoration: none;
+}
+
+.link:hover{
+	color: #45668e;
 }
 
 .link-logo{
