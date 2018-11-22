@@ -30,8 +30,7 @@ public interface HolmesActionReply{
 		
 		String[] salutes = environment.getProperty("SALUTE_"+environment.getProperty("language")).split(",");
 				
-		if(salutes != null && salutes.length > 0) {
-						
+		if(salutes != null && salutes.length > 0) {					
 			for(int i = 0 ; i < salutes.length ; i++) {			
 				if(text.toLowerCase().contains(salutes[i].toLowerCase())) {
 					return new Message(salutes[i], MessageOrigin.ROBOT, new Date());
@@ -44,21 +43,20 @@ public interface HolmesActionReply{
 		
 	public default String loadTextByIgnoreWords(String text, Environment environment) throws Exception{
 		
-		String[] ignores = StringUtil.format(environment.getProperty("IGNORE_"+environment.getProperty("language"))).split(",");
-				
+		String[] ignores = StringUtil.format(environment.getProperty("IGNORE_"+environment.getProperty("language"))).split(",");			
 		String[] words = text.split(" ");
-		
-		if(ignores != null && ignores.length > 0 && words != null && words.length > 0) {
-			
+				
+		if(ignores != null && ignores.length > 0 && words != null && words.length > 0) {		
 			for(int i = 0 ; i < words.length ; i++) {				
-				for(int j = 0 ; j < ignores.length ; j++) {			
-					if(words[i].toLowerCase().equals(ignores[j].toLowerCase())) {
-						text = text.toLowerCase().replace(ignores[j].toLowerCase(), "");
+				for(int j = 0 ; j < ignores.length ; j++) {										
+					if(words[i].toLowerCase().equals(ignores[j].toLowerCase())) {												
+						text = text.toLowerCase().replaceFirst(ignores[j].toLowerCase(), "");											
+						break;
 					}
 				}
 			}
 		}
 		
-		return text;
+		return text.trim();
 	}
 }

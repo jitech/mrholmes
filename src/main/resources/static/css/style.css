@@ -1,0 +1,163 @@
+
+.body{
+	font-family: Helvetica Neue, Segoe UI, Helvetica, Arial, sans-serif; 
+	color: #1d2129; 
+	font-size: 16px; 
+	margin: 0px;
+}
+
+.header{
+	width: 100%; 
+	position: fixed; 
+	top: 0; 
+	display: table; 
+	background: #FFF;
+}
+
+.content{
+	 width: 100%; 
+	 display: table; 
+	 margin-top: 50px; 
+	 margin-bottom: 100px;
+	 background: #FFF;
+}
+
+.footer{
+	width: 100%; 
+	position: fixed; 
+	bottom: 0; 
+	display: table; 
+	background: #FFF;
+}
+
+.form-human-message{
+	display: table; 
+	width: 100%; 
+	border: 1px solid #CCC; 
+	padding: 2px;
+}
+
+.input-human-message{
+	float: left; 
+	width: 80%; 
+	font-family: 'Raleway', sans-serif; 
+	padding-left: 7px;
+	height: 20px; 
+	border: 0px; 
+	padding-top: 10px; 
+	padding-bottom: 10px;
+}
+
+input.input-human-message:focus {
+    outline-width: 0;
+}
+
+.button-human-message{
+	float: right; 
+	width: 15%; 
+	padding: 11px; 
+	font-family: 'Roboto', sans-serif; 
+	background-color: #5e60b4; 
+	border: 1px solid #5e60b4; 
+	color: #fff;
+}
+
+
+.content-nothing-to-see-here, .content-how-i-work, .content-chat{
+	width: 40%; 
+	text-align: left; 
+	display: table; 
+}
+
+.messages{
+	margin-bottom: 80px;
+}
+
+.content-nothing-to-see-here-icon{
+	width: 100%; 
+	display: table;
+}
+
+.content-nothing-to-see-here-message{
+	width: 100%; 
+	text-align: center; 
+	font-size: 26px; 
+	display: table; 
+	margin-top: -50px; 
+	color: #464646;
+	letter-spacing: -1.5px;
+}
+
+.content-how-i-work-title{
+	width: 40%; 
+	display: table; 
+	text-align: left; 
+	font-weight: bold; 
+	letter-spacing: -3px; 
+	font-size: 24px; 
+	color: #1d2129;
+}
+
+.content-how-i-work-message{
+	margin-top: 25px; 
+	width: 100%; 
+	display: table; 
+	text-align: left; 
+	font-size: 18px;
+}
+
+
+.robot-message{
+	display: table; 
+	float: left; 
+	text-align: left; 
+	background-color: #eee; 
+	border-radius: 20px; 
+	padding: 16px; 
+	padding-bottom: 8px; 
+	max-width: 55%;
+}
+
+.human-message{
+	display: table; 
+	float: right; 
+	text-align: left; 
+	background-color: #5e60b4; 
+	border-radius: 20px; 
+	padding: 16px;
+	padding-bottom: 8px;
+	max-width: 60%;
+	color: #FFF;
+}
+			
+.link{
+	color: #1d2129;
+	text-decoration: none;
+}
+
+.link-logo{
+	font-weight: bold; 
+	letter-spacing: -1.5px; 
+	font-size: 22px; 
+	color: #9f9fa3;
+	font-weight: bold;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+.footer-sub-menu{
+	width: 100%; 
+	display: table; 
+	margin-top: 50px; 
+	margin-bottom: 10px; 
+	font-size: 11px;
+}
+
+.footer-menu, .header-menu{
+	display: table; 
+	width: 40%;
+}
+
+.icon{
+	float: left; 
+	border-radius: 100%;
+}

@@ -26,17 +26,25 @@ public class GoogleUtil {
 					if(link.toString().contains("class=\"plantl\"")) {
 					
 						boolean addLink = true;
-						String link_ = link.attr("href");
-
-						for(String url : linksByGoogle) {
-							URI uri = new URI(link_);
-							String domain = uri.getHost();
+						String link_ = null;
+						String domain = null;
 						
-							if(url.equals(link_) || url.contains(domain)) {
-								addLink = false;
-								break;
+						while(link_ == null && domain == null) {
+							
+							link_ = link.attr("href");
+							
+							for(String url : linksByGoogle) {
+								URI uri = new URI(link_);
+								domain = uri.getHost();
+							
+								if(url.equals(link_) || url.contains(domain)) {
+									addLink = false;
+									break;
+								}
 							}
 						}
+
+						
 					
 						if(addLink) {							
 							linksByGoogle.add(link_);
@@ -86,12 +94,12 @@ public class GoogleUtil {
 					List<Score> scores = new ArrayList<Score>();
 										
 					for(String linkByGoogle : linksByGoogle) {					
-						MrHolmesUtil.say("Verify link: "+linkByGoogle);
+						//MrHolmesUtil.say("Verify link: "+linkByGoogle);
 						
 						for(Ecommerce ecommerce : ecommerces) {
 						
 							if(linkByGoogle.contains(ecommerce.getUrl())) {
-								MrHolmesUtil.say("Accessing content in "+linkByGoogle);
+								//MrHolmesUtil.say("Accessing content in "+linkByGoogle);
 								
 								try {
 										doc = Jsoup.connect(linkByGoogle).timeout(6000).get();
@@ -125,13 +133,15 @@ public class GoogleUtil {
 																		
 											Double x = (quantity * (percent)/100);
 							
-											MrHolmesUtil.say("Quantity: "+quantity+ " - Indications: "+x.intValue());
+											//MrHolmesUtil.say("Quantity: "+quantity+ " - Indications: "+x.intValue());
 											scores.add(new Score(doc.title(), quantity, x.intValue()));
 										}
 																	
 								}catch(SocketTimeoutException ex) {									
-									MrHolmesUtil.say("Não consegui acessar! Time out");
+									//MrHolmesUtil.say("Não consegui acessar! Time out");
 								}
+							}else {
+								MrHolmesUtil.say("Site not mapped "+linkByGoogle);
 							}
 						}
 					}
