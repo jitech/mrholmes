@@ -99,7 +99,7 @@ public class GoogleUtil {
 						for(Ecommerce ecommerce : ecommerces) {
 						
 							if(linkByGoogle.contains(ecommerce.getUrl())) {
-								//MrHolmesUtil.say("Accessing content in "+linkByGoogle);
+								MrHolmesUtil.say("Accessing content in "+linkByGoogle);
 								
 								try {
 										doc = Jsoup.connect(linkByGoogle).timeout(6000).get();

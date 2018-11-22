@@ -47,6 +47,15 @@ public enum HolmesAction implements HolmesActionReply {
 				text = text.toLowerCase().replace(messages.get(0).getText().toLowerCase(), "");
 			}
 			
+			/* Varifica se houve humor */
+			Message humor = loadHumor(text, environment);
+			
+			if(humor != null) {
+				messages.add(humor);
+				return messages;
+			}
+			
+			
 			/* Ignora alguns verbos e substantivos */
 			text = loadTextByIgnoreWords(text, environment);
 

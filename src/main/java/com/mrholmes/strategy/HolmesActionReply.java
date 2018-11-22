@@ -41,6 +41,21 @@ public interface HolmesActionReply{
 		return null;
 	}
 		
+	public default Message loadHumor(String text, Environment environment) throws Exception{
+		
+		String[] humor = StringUtil.format(environment.getProperty("HUMOR_"+environment.getProperty("language"))).split(",");			
+				
+		if(humor != null && humor.length > 0) {		
+			for(int i = 0 ; i < humor.length ; i++) {				
+				if(text.trim().toLowerCase().equals(humor[i].trim().toLowerCase())) {
+					return new Message("rs", MessageOrigin.ROBOT, new Date());
+				}
+			}
+		}
+		
+		return null;
+	}
+		
 	public default String loadTextByIgnoreWords(String text, Environment environment) throws Exception{
 		
 		String[] ignores = StringUtil.format(environment.getProperty("IGNORE_"+environment.getProperty("language"))).split(",");			
