@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body>
+<body onload="load()">
 		
 	<div id="content-how-i-work" class="content-how-i-work">
 			
@@ -13,27 +13,21 @@
 			How I work
 		</div>
 			
-		<div class="content-how-i-work-message">						
-			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 60%">
-				1. Você me diz qual produto quer comprar.
+		<div id="message1" class="content-how-i-work-message" style="margin-top: 35px;">						
+			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 45%;">
+				Você me diz qual produto quer comprar
 			</div>				
 		</div>
 									
-		<div class="content-how-i-work-message">					
-			<div class="robot-message" style="float: right; background-color: #dcf8c6; color: #075e54; padding-bottom: 16px; max-width: 60%">
-				2. Eu procuro recomendações que o produto recebeu em várias lojas virtuais.
+		<div id="message2" class="content-how-i-work-message">					
+			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 65%;">				
+				Eu procuro recomendações que o produto recebeu em várias lojas virtuais
 			</div>				
 		</div>
 					
 		<div class="content-how-i-work-message">					
-			<div class="robot-message" style="background-color: #c4dff6; color: #095280; padding-bottom: 16px; max-width: 60%">
-				3. Eu mostro pra você quantas pessoas recomendaram o produto!
-			</div>						
-		</div>
-					
-		<div class="content-how-i-work-message">					
-			<div class="robot-message" style="float: right; background-color: #ffdc80; color: #f77737; padding-bottom: 16px; max-width: 60%">
-				4. Que tal começar a usar?
+			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 55%;">				
+				Eu mostro pra você quantas pessoas recomendaram o produto!
 			</div>						
 		</div>
 					

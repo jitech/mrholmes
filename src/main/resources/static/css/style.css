@@ -99,10 +99,12 @@ input.input-human-message:focus {
 }
 
 .content-how-i-work-message{
-	margin-top: 25px; 
+	margin-top: 12px; 
 	width: 100%; 
 	display: table; 
 	text-align: left; 
+	font-size: 18px;
+	letter-spacing: -1.5px;
 }
 
 

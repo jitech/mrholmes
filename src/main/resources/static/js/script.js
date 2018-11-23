@@ -4,12 +4,12 @@
 			var div_robot_reading = '<div class="robot-message"> <img src="images/loading.svg" width="20px" style="margin-left: 7px; margin-right: 7px"> </div>';
 					
 			function sendMessage(){
-				var date = new Date();
-				var human_message = document.getElementById("human-message").value;			
+				var human_message = document.getElementById("human-message").value;	
+				var date = new Date();					
 				document.getElementById("message").innerHTML = document.getElementById("message").innerHTML + line + div_human_message.replace('<MESSAGE>', document.getElementById("human-message").value).replace('<TIME>', date.getHours() +':'+date.getMinutes());							
 				document.getElementById("message").innerHTML = document.getElementById("message").innerHTML + line + div_robot_reading;
 				document.getElementById("human-message").value = "";			
-				searchEvaluations(human_message);
+				searchEvaluations(human_message);		
 			};
 		
 			function sayWelcome(){		
