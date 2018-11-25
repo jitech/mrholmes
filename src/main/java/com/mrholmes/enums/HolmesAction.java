@@ -6,37 +6,42 @@ import java.util.List;
 import org.springframework.core.env.Environment;
 
 import com.mrholmes.domain.Message;
-import com.mrholmes.domain.Score;
+import com.mrholmes.domain.ProductInfo;
 import com.mrholmes.strategy.HolmesActionReply;
+import com.mrholmes.util.EvaluationUtil;
 import com.mrholmes.util.GoogleUtil;
-import com.mrholmes.util.StringListUtil;
+import com.mrholmes.util.IndicationUtil;
+import com.mrholmes.util.MessageUtil;
+import com.mrholmes.util.ShopUtil;
+import com.mrholmes.util.ParameterUtil;
 
 public enum HolmesAction implements HolmesActionReply {
-
+	
 	SAY_WELCOME("SAY_WELCOME"){		
 		@Override
-		public List<Message> reply(String text, Environment environment) throws Exception{			
+		public List<Message> reply(String text, Environment environment) throws Exception{
+			GoogleUtil.verifyAccess();
 			List<Message> messages = new ArrayList<Message>();
-			messages.add(loadMessage("HY", null, environment));
-			messages.add(loadMessage("IM_HOLMES", null, environment));
+			messages.add(MessageUtil.loadMessage("HY", null, environment));
+			messages.add(MessageUtil.loadMessage("IM_HOLMES", null, environment));
 			return messages;
 		}
 	},
 	
-	SAY_EVALUATION_SEARCH_RESULT("SAY_EVALUATION_SEARCH_RESULT"){	
+	SAY_EVALUATION_PRODUCT("SAY_EVALUATION_PRODUCT"){	
 		@Override
 		public List<Message> reply(String text, Environment environment) throws Exception{
 
 			List<Message> messages = new ArrayList<Message>();
 			
 			/* Varifica se houve saldação */
-			Message salute = loadSalute(text, environment);
+			Message salute = MessageUtil.loadSalute(text, environment);
 			
 			if(salute != null) {
 				messages.add(salute);
 				
 				/* Ignora alguns verbos e substantivos */
-				text = loadTextByIgnoreWords(text, environment);
+				text = MessageUtil.loadTextByIgnoreWords(text, environment);
 				
 				/* +1 pois foi incluido a ! junto a frase */
 				if(salute.getText().length() == text.length()) {
@@ -48,48 +53,39 @@ public enum HolmesAction implements HolmesActionReply {
 			}
 			
 			/* Varifica se houve humor */
-			Message humor = loadHumor(text, environment);
+			Message humor = MessageUtil.loadHumor(text, environment);
 			
 			if(humor != null) {
 				messages.add(humor);
 				return messages;
 			}
-			
-			
-			/* Ignora alguns verbos e substantivos */
-			text = loadTextByIgnoreWords(text, environment);
-
-			Integer evaluations = 0;
-			Integer indications = 0;
-			Integer count = 0;
-			
-			List<Score> scores = GoogleUtil.loadScore(text);
-			
-			if(scores != null) {
-			
-				for(Score score : scores) {
-					evaluations = evaluations + score.getNumberOfEvaluations();	
-					indications = indications + score.getNumberOfIndications();
-					count++;
-				}
-			
-				if(!scores.isEmpty()) {			
-					StringListUtil.add(evaluations.toString());
-					StringListUtil.add(count.toString());
-					messages.add(loadMessage("IFOUND_EVALUATIONS", StringListUtil.loadParameters(), environment));
-				
-					StringListUtil.add(new Double(((new Double(indications)/new Double(evaluations))*100)).intValue());
-					messages.add(loadMessage("IFOUND_INDICATIONS", StringListUtil.loadParameters(), environment));
-					messages.add(loadMessage("OTHER_PRODUCT", null, environment));
-				
-				}else {
-					messages.add(loadMessage("NOT_FOUND", null, environment));
-				}
-			
-			}else {
-				messages.add(loadMessage("UNDERSTAND", null, environment));
-			}
 						
+			/* Ignora alguns verbos e substantivos */
+			text = MessageUtil.loadTextByIgnoreWords(text, environment);
+			
+			List<ProductInfo> productInfos = ShopUtil.loadProductInfosByGoogleLinks(GoogleUtil.loadLinksByGoogle("moto g6 plus"));
+						
+			if(productInfos != null && !productInfos.isEmpty()) {
+				
+				ParameterUtil.add(EvaluationUtil.loadTotalEvaluationByProducts(productInfos));			
+				ParameterUtil.add(productInfos.size());
+				messages.add(MessageUtil.loadMessage("IFOUND_EVALUATIONS", ParameterUtil.loadParameters(), environment));
+					
+				ParameterUtil.add(new Double(((new Double(IndicationUtil.loadTotalIndicationByProducts(productInfos))/new Double(EvaluationUtil.loadTotalEvaluationByProducts(productInfos)))*100)).intValue());			
+				messages.add(MessageUtil.loadMessage("IFOUND_INDICATIONS", ParameterUtil.loadParameters(), environment));
+							
+				ProductInfo productInfo = ShopUtil.loadLowerPrice(productInfos);			
+				ParameterUtil.add(productInfo.getShopUrl());	
+				ParameterUtil.add(productInfo.getShop());
+				ParameterUtil.add(productInfo.getPrice().toString().replace(".", ","));
+				messages.add(MessageUtil.loadMessage("SHOP_LOWER_PRICE", ParameterUtil.loadParameters(), environment));	
+				
+				messages.add(MessageUtil.loadMessage("OTHER_PRODUCT", null, environment));
+				
+			}else {
+				messages.add(MessageUtil.loadMessage("UNDERSTAND", null, environment));
+			}
+					
 			return messages;
 		}
 	};

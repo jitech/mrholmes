@@ -11,20 +11,23 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mrholmes.controller.GenericController;
 import com.mrholmes.domain.Message;
 import com.mrholmes.enums.HolmesAction;
+import com.mrholmes.util.MessageUtil;
 
 @RestController
 @RequestMapping(value="/mrholmes")
-public class MrHolmesRestController extends GenericController{
+public class MrHolmesRestController extends GenericController {
 	
 	@RequestMapping(value = "/talk", method = RequestMethod.POST)
-    public List<Message> talk(@RequestParam(value="topic", required = true, defaultValue = "SAY_WELCOME") String topic, @RequestParam(value="text", required = false) String text) { 		 
+    public List<Message> talk(@RequestParam(value="topic", required = true, defaultValue = "SAY_WELCOME") String topic, @RequestParam(value="text", required = false) String text) throws Exception{ 		 
 		
-		try {					
+		try {			
 				return HolmesAction.valueOf(HolmesAction.class, topic).reply(text, environment);
 						
-		}catch(Exception ex) {
+		}catch(Exception ex) {		
 			ex.printStackTrace();
-			return new ArrayList<Message>();
+			List<Message> messagesError = new ArrayList<Message>();			
+			messagesError.add(MessageUtil.loadMessage("ERROR", null, environment));			
+			return messagesError;
 		}	
     }
 }

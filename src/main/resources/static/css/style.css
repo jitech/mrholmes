@@ -99,7 +99,7 @@ input.input-human-message:focus {
 }
 
 .content-how-i-work-message{
-	margin-top: 12px; 
+	margin-top: 5px; 
 	width: 100%; 
 	display: table; 
 	text-align: left; 
@@ -129,6 +129,8 @@ input.input-human-message:focus {
 	padding-bottom: 8px;
 	max-width: 60%;
 	color: #FFF;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 			
 .link{

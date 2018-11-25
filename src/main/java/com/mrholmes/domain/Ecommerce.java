@@ -2,9 +2,11 @@ package com.mrholmes.domain;
 
 public class Ecommerce {
 
+	private String name;
 	private String url;
 	private PercentHtmlTag percentHtmlTag = new PercentHtmlTag();
 	private RatingHtmlTag ratingHtmlTag = new RatingHtmlTag();
+	private SalesPriceHtmlTag salesPriceHtmlTag = new SalesPriceHtmlTag();
 	
 	public class PercentHtmlTag{
 		
@@ -63,14 +65,52 @@ public class Ecommerce {
 			this.tags = tags;
 		} 
 	}
+	
+	public class SalesPriceHtmlTag{
+		
+		private String cssName;
+		private String[] tags;
+		
+		public SalesPriceHtmlTag() {
+			super();
+		}
+		
+		public SalesPriceHtmlTag(String cssName, String[] tags) {
+			super();
+			this.cssName = cssName;
+			this.tags = tags;
+		}
+		
+		public String getCssName() {
+			return cssName;
+		}
+		public void setCssName(String cssName) {
+			this.cssName = cssName;
+		}
+		public String[] getTags() {
+			return tags;
+		}
+		public void setTags(String[] tags) {
+			this.tags = tags;
+		} 
+	}
 
 	public Ecommerce() {
 		super();
 	}
 
-	public Ecommerce(String url) {
+	public Ecommerce(String url, String name) {
 		super();
+		this.name = name;
 		this.url = url;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getUrl() {
@@ -97,6 +137,14 @@ public class Ecommerce {
 		this.ratingHtmlTag = ratingHtmlTag;
 	}
 	
+	public SalesPriceHtmlTag getSalesPriceHtmlTag() {
+		return salesPriceHtmlTag;
+	}
+
+	public void setSalesPriceHtmlTag(SalesPriceHtmlTag salesPriceHtmlTag) {
+		this.salesPriceHtmlTag = salesPriceHtmlTag;
+	}
+	
 	public void createPercentHtmlTag(String cssName, String[] tags) {
 		percentHtmlTag.setCssName(cssName);
 		percentHtmlTag.setTags(tags);
@@ -105,5 +153,10 @@ public class Ecommerce {
 	public void createRatingHtmlTag(String cssName, String[] tags) {
 		ratingHtmlTag.setCssName(cssName);
 		ratingHtmlTag.setTags(tags);
+	}
+
+	public void createSalesPriceHtmlTag(String cssName, String[] tags) {
+		salesPriceHtmlTag.setCssName(cssName);
+		salesPriceHtmlTag.setTags(tags);
 	}
 }

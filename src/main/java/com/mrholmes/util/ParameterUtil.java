@@ -3,7 +3,7 @@ package com.mrholmes.util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StringListUtil {
+public class ParameterUtil {
 
 	private static List<Object> parameters;
 	

@@ -13,22 +13,30 @@
 			How I work
 		</div>
 			
-		<div id="message1" class="content-how-i-work-message" style="margin-top: 35px;">						
+		<div class="content-how-i-work-message" style="margin-top: 35px;">						
 			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 45%;">
-				Você me diz qual produto quer comprar
+				A experiência de outros consumidores é importante na hora de escolher um produto?
 			</div>				
 		</div>
+		
+		<div class="content-how-i-work-message" style="text-align: left; font-size: 50px; font-weight: bold; max-width: 45%;">	
+			&#x2939;
+		</div>
 									
-		<div id="message2" class="content-how-i-work-message">					
-			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 65%;">				
-				Eu procuro recomendações que o produto recebeu em várias lojas virtuais
+		<div class="content-how-i-work-message">					
+			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 65%; margin-left: 5%">				
+				É só dizer qual o produto e eu te mostro como está a avaliação dele em diversas lojas virtuais
 			</div>				
+		</div>
+		
+		<div class="content-how-i-work-message" style="text-align: right; font-size: 48px; font-weight: bold; max-width: 65%;">		
+			&#x2938;
 		</div>
 					
 		<div class="content-how-i-work-message">					
-			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 55%;">				
-				Eu mostro pra você quantas pessoas recomendaram o produto!
-			</div>						
+			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 55%; margin-left: 25%">				
+				É fácil e rápido! <a href="/" class="link">Vamos lá?</a>
+			</div>					
 		</div>
 					
 	</div>		
