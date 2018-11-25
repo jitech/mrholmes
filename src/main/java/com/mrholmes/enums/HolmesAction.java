@@ -63,7 +63,7 @@ public enum HolmesAction implements HolmesActionReply {
 			/* Ignora alguns verbos e substantivos */
 			text = MessageUtil.loadTextByIgnoreWords(text, environment);
 			
-			List<ProductInfo> productInfos = ShopUtil.loadProductInfosByGoogleLinks(GoogleUtil.loadLinksByGoogle("moto g6 plus"));
+			List<ProductInfo> productInfos = ShopUtil.loadProductInfosByGoogleLinks(GoogleUtil.loadLinksByGoogle(text));
 						
 			if(productInfos != null && !productInfos.isEmpty()) {
 				
@@ -78,8 +78,7 @@ public enum HolmesAction implements HolmesActionReply {
 				ParameterUtil.add(productInfo.getShopUrl());	
 				ParameterUtil.add(productInfo.getShop());
 				ParameterUtil.add(productInfo.getPrice().toString().replace(".", ","));
-				messages.add(MessageUtil.loadMessage("SHOP_LOWER_PRICE", ParameterUtil.loadParameters(), environment));	
-				
+				messages.add(MessageUtil.loadMessage("SHOP_LOWER_PRICE", ParameterUtil.loadParameters(), environment));				
 				messages.add(MessageUtil.loadMessage("OTHER_PRODUCT", null, environment));
 				
 			}else {

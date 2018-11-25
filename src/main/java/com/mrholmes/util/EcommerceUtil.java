@@ -16,7 +16,7 @@ public class EcommerceUtil {
 		submarino.createPercentHtmlTag("summary-stats-percentage-dial-text", submarinoTag1);
 		String[] submarinoTag2 = {"<div class=\"rating-star-counter\">", "</div>", "(", ")"};
 		submarino.createRatingHtmlTag("rating-star-counter", submarinoTag2);	
-		String[] submarinoTag3 = {"<p class=\"sales-price\">R$ ", "<svg class=\"svg-icon prime\" aria-labelledby=\"\" role=\"img\">", "<use xlink:href=\"#icon-prime\"></use>", "</svg></p>"};
+		String[] submarinoTag3 = {"<p class=\"sales-price\">R$ ", "<svg class=\"svg-icon prime\" aria-labelledby=\"\" role=\"img\">", "<use xlink:href=\"#icon-prime\">","</use>", "</svg>","</p>"};
 		submarino.createSalesPriceHtmlTag("sales-price", submarinoTag3);	
 		ecommerces.add(submarino);
 		
@@ -25,7 +25,7 @@ public class EcommerceUtil {
 		americanas.createPercentHtmlTag("summary-stats-percentage-dial-text", americanasTag1);
 		String[] americanasTag2 = {"<div class=\"rating-star-counter\">", "</div>", "(", ")"};
 		americanas.createRatingHtmlTag("rating-star-counter", americanasTag2);
-		String[] americanasTag3 = {"<p class=\"sales-price\">R$ ", "<svg class=\"svg-icon prime\" aria-labelledby=\"\" role=\"img\">", "<use xlink:href=\"#icon-prime\"></use>", "</svg></p>"};
+		String[] americanasTag3 = {"<p class=\"sales-price\">R$ ", "<svg class=\"svg-icon prime\" aria-labelledby=\"\" role=\"img\">", "<use xlink:href=\"#icon-prime\">","</use>", "</svg>","</p>"};
 		americanas.createSalesPriceHtmlTag("sales-price", americanasTag3);
 		ecommerces.add(americanas);
 		
@@ -34,7 +34,7 @@ public class EcommerceUtil {
 		shoptime.createPercentHtmlTag("summary-stats-percentage-dial-text", shoptimeTag1);
 		String[] shoptimeTag2 = {"<div class=\"rating-star-counter\">", "</div>", "(", ")"};
 		shoptime.createRatingHtmlTag("rating-star-counter", shoptimeTag2);
-		String[] shoptimeTag3 = {"<p class=\"sales-price\">R$ ", "<svg class=\"svg-icon prime\" aria-labelledby=\"\" role=\"img\">", "<use xlink:href=\"#icon-prime\"></use>", "</svg></p>"};
+		String[] shoptimeTag3 = {"<p class=\"sales-price\">R$ ", "<svg class=\"svg-icon prime\" aria-labelledby=\"\" role=\"img\">", "<use xlink:href=\"#icon-prime\">","</use>", "</svg>","</p>"};
 		shoptime.createSalesPriceHtmlTag("sales-price", shoptimeTag3);
 		ecommerces.add(shoptime);
 		

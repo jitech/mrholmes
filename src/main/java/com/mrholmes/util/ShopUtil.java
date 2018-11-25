@@ -37,14 +37,15 @@ public class ShopUtil {
 					
 					for(String shopLink : shopLinks) {
 						
-						MrHolmesUtil.say("Acessando: "+shopLink);
+						Ecommerce ecommerce = EcommerceUtil.loadEcommerceByUrl(shopLink);
 						
 						try {
-								Document doc = Jsoup.connect(shopLink).timeout(6000).get();
-								
-								Ecommerce ecommerce = EcommerceUtil.loadEcommerceByUrl(shopLink);
 								
 								if(ecommerce != null) {
+									
+									MrHolmesUtil.say("Acessando: "+shopLink);
+									
+									Document doc = Jsoup.connect(shopLink).timeout(6000).get();
 								
 									List<Element> evaluationsElements = doc.getElementsByClass(ecommerce.getRatingHtmlTag().getCssName());
 									List<Element> percentElements = doc.getElementsByClass(ecommerce.getPercentHtmlTag().getCssName());	

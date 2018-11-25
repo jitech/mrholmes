@@ -5,8 +5,8 @@ public class ProductInfo {
 	private String shop;
 	private String shopUrl;
 	private Double price;
-	private Integer numberOfEvaluations;
-	private Integer numberOfIndications;
+	private Integer numberOfEvaluations = 0;
+	private Integer numberOfIndications = 0;
 		
 	public ProductInfo() {
 		super();
