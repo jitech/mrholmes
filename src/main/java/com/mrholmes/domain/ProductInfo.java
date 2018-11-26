@@ -6,7 +6,7 @@ public class ProductInfo {
 	private String shopUrl;
 	private Double price;
 	private Integer numberOfReviews = 0;
-	private Double numberOfIndications = 0.0;
+	private Double percentOfIndications = 0.0;
 		
 	public ProductInfo() {
 		super();
@@ -18,7 +18,7 @@ public class ProductInfo {
 		this.shopUrl = shopUrl;
 		this.price = price;
 		this.numberOfReviews = numberOfReviews;
-		this.numberOfIndications = numberOfIndications;
+		this.percentOfIndications = numberOfIndications;
 	}
 	
 	public String getShop() {
@@ -53,17 +53,17 @@ public class ProductInfo {
 		this.numberOfReviews = numberOfReviews;
 	}
 	
-	public Double getNumberOfIndications() {
-		return numberOfIndications;
+	public Double getPercentOfIndications() {
+		return percentOfIndications;
 	}
 	
-	public void setNumberOfIndications(Double numberOfIndications) {
-		this.numberOfIndications = numberOfIndications;
+	public void setPercentOfIndications(Double numberOfIndications) {
+		this.percentOfIndications = numberOfIndications;
 	}
 	
 	@Override
 	public String toString() {
 		return "ProductInfo [shopUrl=" + shopUrl + ", price=" + price + ", numberOfReviews=" + numberOfReviews
-				+ ", numberOfIndications=" + numberOfIndications + "]";
+				+ ", percentOfIndications=" + percentOfIndications + "]";
 	}
 }
