@@ -4,6 +4,7 @@ public class Ecommerce {
 
 	private String name;
 	private String url;
+	private String tagDescription;
 	private String tagReview;
 	private String tagIndication;
 	private String tagPrice;
@@ -12,10 +13,11 @@ public class Ecommerce {
 		super();
 	}
 	
-	public Ecommerce(String name, String url, String tagReview, String tagIndication, String tagPrice) {
+	public Ecommerce(String name, String url, String tagDescription, String tagReview, String tagIndication, String tagPrice) {
 		super();
 		this.name = name;
 		this.url = url;
+		this.tagDescription = tagDescription;
 		this.tagReview = tagReview;
 		this.tagIndication = tagIndication;
 		this.tagPrice = tagPrice;
@@ -32,6 +34,12 @@ public class Ecommerce {
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public String getTagDescription() {
+		return tagDescription;
+	}
+	public void setTagDescription(String tagDescription) {
+		this.tagDescription = tagDescription;
 	}
 	public String getTagReview() {
 		return tagReview;
@@ -51,9 +59,10 @@ public class Ecommerce {
 	public void setTagPrice(String tagPrice) {
 		this.tagPrice = tagPrice;
 	}
+
 	@Override
 	public String toString() {
-		return "Ecommerce [name=" + name + ", url=" + url + ", tagReview=" + tagReview + ", tagIndication="
-				+ tagIndication + ", tagPrice=" + tagPrice + "]";
+		return "Ecommerce [name=" + name + ", url=" + url + ", tagDescription=" + tagDescription + ", tagReview="
+				+ tagReview + ", tagIndication=" + tagIndication + ", tagPrice=" + tagPrice + "]";
 	}
 }	

@@ -47,8 +47,11 @@ public class IndicationUtil {
 		try {
 				Integer totalIndication = 0;
 			
-				for(ProductInfo productInfo : productInfos) {					
-					totalIndication = (int) (totalIndication + (productInfo.getNumberOfReviews()*(productInfo.getPercentOfIndications())/100));				
+				for(ProductInfo productInfo : productInfos) {			
+					
+					if(productInfo.getNumberOfReviews() != null && productInfo.getPercentOfIndications() != null) {
+						totalIndication = (int) (totalIndication + (productInfo.getNumberOfReviews()*(productInfo.getPercentOfIndications())/100));	
+					}
 				}
 				
 				return totalIndication;

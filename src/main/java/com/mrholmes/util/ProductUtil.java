@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import com.mrholmes.domain.Ecommerce;
 import com.mrholmes.domain.ProductInfo;
@@ -52,6 +53,7 @@ public class ProductUtil {
 									productInfos.add(
 											new ProductInfo(ecommerce.getName(), 
 													shopLink, 
+													ProductUtil.loadDescriptionByURL(doc, ecommerce.getTagDescription()),
 													PriceUtil.loadPriceByURL(doc, ecommerce.getTagPrice()), 
 													ReviewUtil.loadQuantReviewByURL(doc, ecommerce.getTagReview()), 
 													IndicationUtil.loadPercentIndicationsByURL(doc, ecommerce.getTagIndication())
@@ -73,5 +75,25 @@ public class ProductUtil {
 			ex.printStackTrace();
 			return null;
 		}				
+	}
+	
+	public static String loadDescriptionByURL(Document doc, String tagConfig) {
+		
+		try {			
+				List<Element> elementsByDescription = doc.select(tagConfig);
+			
+				/* Get value inner tag */
+				String description = elementsByDescription.get(0).text();
+				
+				if(description == null || description.isEmpty()) {
+					/* Get value and extract from inner tags */
+					description = elementsByDescription.get(0).toString();
+				}
+			
+				return description;
+			
+		}catch(Exception ex) {
+			return null;
+		}
 	}
 }

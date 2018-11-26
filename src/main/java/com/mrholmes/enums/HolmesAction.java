@@ -42,21 +42,32 @@ public enum HolmesAction implements HolmesActionReply {
 			}
 			
 			List<ProductInfo> productInfos = ProductUtil.loadProductInfosByGoogleLinks(GoogleUtil.loadLinksByGoogle(map.get("text").toString()));
-						
+		
+			System.out.println(productInfos);
+			
+			Integer totalReviews = ReviewUtil.loadTotalReviewByProducts(productInfos);
+			Integer totalIndications = IndicationUtil.loadTotalIndicationByProducts(productInfos);
+			
 			if(productInfos != null && !productInfos.isEmpty()) {
-				
-				ParameterUtil.add(ReviewUtil.loadTotalReviewByProducts(productInfos));			
-				ParameterUtil.add(productInfos.size());
-				messages.add(MessageUtil.loadMessage("IFOUND_EVALUATIONS", ParameterUtil.loadParameters(), environment));
+
+				if(totalReviews > 0 && totalIndications > 0) {
+					ParameterUtil.add(totalReviews);			
+					ParameterUtil.add(productInfos.size());
+					messages.add(MessageUtil.loadMessage("IFOUND_EVALUATIONS", ParameterUtil.loadParameters(), environment));
 					
-				ParameterUtil.add(new Double(((new Double(IndicationUtil.loadTotalIndicationByProducts(productInfos))/new Double(ReviewUtil.loadTotalReviewByProducts(productInfos)))*100)).intValue());			
-				messages.add(MessageUtil.loadMessage("IFOUND_INDICATIONS", ParameterUtil.loadParameters(), environment));
+					ParameterUtil.add(new Double(((new Double(totalIndications)/new Double(totalReviews))*100)).intValue());			
+					messages.add(MessageUtil.loadMessage("IFOUND_INDICATIONS", ParameterUtil.loadParameters(), environment));
 							
-				ProductInfo productInfo = ProductUtil.loadLowerPrice(productInfos);			
-				ParameterUtil.add(productInfo.getShopUrl());	
-				ParameterUtil.add(productInfo.getShop());
-				ParameterUtil.add(productInfo.getPrice().toString().replace(".", ","));
-				messages.add(MessageUtil.loadMessage("SHOP_LOWER_PRICE", ParameterUtil.loadParameters(), environment));				
+					ProductInfo productInfo = ProductUtil.loadLowerPrice(productInfos);			
+					ParameterUtil.add(productInfo.getShopUrl());	
+					ParameterUtil.add(productInfo.getShop());
+					ParameterUtil.add(productInfo.getPrice().toString().replace(".", ","));
+					messages.add(MessageUtil.loadMessage("SHOP_LOWER_PRICE", ParameterUtil.loadParameters(), environment));	
+					
+				}else {
+					messages.add(MessageUtil.loadMessage("NOT_FOUND", null, environment));
+				}
+				
 				messages.add(MessageUtil.loadMessage("OTHER_PRODUCT", null, environment));
 				
 			}else {

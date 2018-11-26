@@ -24,8 +24,8 @@
 		</div>
 									
 		<div class="content-how-i-work-message">					
-			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 65%; margin-left: 5%">				
-				É só dizer qual o produto e eu te mostro como está a avaliação dele em diversas lojas virtuais
+			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 72%; margin-left: 5%">				
+				É só dizer qual o produto e eu te mostro como está o nível de recomendação e qual a loja está com melhor preço!
 			</div>				
 		</div>
 		
@@ -35,7 +35,7 @@
 					
 		<div class="content-how-i-work-message">					
 			<div class="robot-message" style="color: #1d2129; padding-bottom: 16px; max-width: 55%; margin-left: 25%">				
-				É fácil e rápido! <a href="/" class="link">Vamos lá?</a>
+				É fácil e rápido! <a href="/" class="link">Que tal começar a usar?</a>
 			</div>					
 		</div>
 					
