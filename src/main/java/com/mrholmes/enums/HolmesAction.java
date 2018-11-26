@@ -41,9 +41,7 @@ public enum HolmesAction implements HolmesActionReply {
 				messages.add((Message) map.get("message"));
 			}
 			
-			List<ProductInfo> productInfos = ProductUtil.loadProductInfosByGoogleLinks(GoogleUtil.loadLinksByGoogle(map.get("text").toString()));
-		
-			System.out.println(productInfos);
+			List<ProductInfo> productInfos = ProductUtil.loadProductInfosByGoogleLinks(map.get("text").toString(), GoogleUtil.loadLinksByGoogle(map.get("text").toString()));
 			
 			Integer totalReviews = ReviewUtil.loadTotalReviewByProducts(productInfos);
 			Integer totalIndications = IndicationUtil.loadTotalIndicationByProducts(productInfos);

@@ -32,7 +32,7 @@ public class ProductUtil {
 		}
 	}
 	
-	public static List<ProductInfo> loadProductInfosByGoogleLinks(List<String> shopLinks){
+	public static List<ProductInfo> loadProductInfosByGoogleLinks(String text, List<String> shopLinks){
 		
 		try {
 				if(shopLinks != null && !shopLinks.isEmpty()) {
@@ -50,6 +50,10 @@ public class ProductUtil {
 								
 									Document doc = Jsoup.connect(shopLink).timeout(6000).get();
 							
+									String title = ProductUtil.loadDescriptionByURL(doc, ecommerce.getTagDescription());
+									
+									if(isProductValid(text, title)) {
+									
 									productInfos.add(
 											new ProductInfo(ecommerce.getName(), 
 													shopLink, 
@@ -58,7 +62,8 @@ public class ProductUtil {
 													ReviewUtil.loadQuantReviewByURL(doc, ecommerce.getTagReview()), 
 													IndicationUtil.loadPercentIndicationsByURL(doc, ecommerce.getTagIndication())
 													)
-											);								
+											);	
+									}
 							}
 														
 						}catch(Exception ex) {
@@ -94,6 +99,30 @@ public class ProductUtil {
 			
 		}catch(Exception ex) {
 			return null;
+		}
+	}
+	
+	public static boolean isProductValid(String textByUser, String textByGoogle) {
+		
+		try {
+				String textByUserArray[] = textByUser.toLowerCase().split(" ");
+				String textByGoogleArray[] = textByGoogle.toLowerCase().split(" ");
+				
+				int count = 0;
+				
+				for(int i=0 ; i<textByUserArray.length ; i++) {
+					for(int j=0 ; j<textByGoogleArray.length ; j++) {
+						if(textByUserArray[i].equals(textByGoogleArray[j])) {
+							count++;
+							break;
+						}
+					}
+				}
+				
+				return textByUserArray.length == count;
+			
+		}catch(Exception ex) {
+			return false;
 		}
 	}
 }
