@@ -2,18 +2,19 @@ package com.mrholmes.enums;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.core.env.Environment;
 
 import com.mrholmes.domain.Message;
 import com.mrholmes.domain.ProductInfo;
 import com.mrholmes.strategy.HolmesActionReply;
-import com.mrholmes.util.EvaluationUtil;
 import com.mrholmes.util.GoogleUtil;
 import com.mrholmes.util.IndicationUtil;
 import com.mrholmes.util.MessageUtil;
-import com.mrholmes.util.ShopUtil;
 import com.mrholmes.util.ParameterUtil;
+import com.mrholmes.util.ProductUtil;
+import com.mrholmes.util.ReviewUtil;
 
 public enum HolmesAction implements HolmesActionReply {
 	
@@ -34,47 +35,24 @@ public enum HolmesAction implements HolmesActionReply {
 
 			List<Message> messages = new ArrayList<Message>();
 			
-			/* Varifica se houve saldação */
-			Message salute = MessageUtil.loadSalute(text, environment);
+			Map<String, Object> map = MessageUtil.cleanText(text, environment);
 			
-			if(salute != null) {
-				messages.add(salute);
-				
-				/* Ignora alguns verbos e substantivos */
-				text = MessageUtil.loadTextByIgnoreWords(text, environment);
-				
-				/* +1 pois foi incluido a ! junto a frase */
-				if(salute.getText().length() == text.length()) {
-					return messages;
-				}
-				
-				/* Remove a saldação do texto de pesquisa */
-				text = text.toLowerCase().replace(messages.get(0).getText().toLowerCase(), "");
+			if(map.get("message") != null) {
+				messages.add((Message) map.get("message"));
 			}
 			
-			/* Varifica se houve humor */
-			Message humor = MessageUtil.loadHumor(text, environment);
-			
-			if(humor != null) {
-				messages.add(humor);
-				return messages;
-			}
-						
-			/* Ignora alguns verbos e substantivos */
-			text = MessageUtil.loadTextByIgnoreWords(text, environment);
-			
-			List<ProductInfo> productInfos = ShopUtil.loadProductInfosByGoogleLinks(GoogleUtil.loadLinksByGoogle(text));
+			List<ProductInfo> productInfos = ProductUtil.loadProductInfosByGoogleLinks(GoogleUtil.loadLinksByGoogle(map.get("text").toString()));
 						
 			if(productInfos != null && !productInfos.isEmpty()) {
 				
-				ParameterUtil.add(EvaluationUtil.loadTotalEvaluationByProducts(productInfos));			
+				ParameterUtil.add(ReviewUtil.loadTotalReviewByProducts(productInfos));			
 				ParameterUtil.add(productInfos.size());
 				messages.add(MessageUtil.loadMessage("IFOUND_EVALUATIONS", ParameterUtil.loadParameters(), environment));
 					
-				ParameterUtil.add(new Double(((new Double(IndicationUtil.loadTotalIndicationByProducts(productInfos))/new Double(EvaluationUtil.loadTotalEvaluationByProducts(productInfos)))*100)).intValue());			
+				ParameterUtil.add(new Double(((new Double(IndicationUtil.loadTotalIndicationByProducts(productInfos))/new Double(ReviewUtil.loadTotalReviewByProducts(productInfos)))*100)).intValue());			
 				messages.add(MessageUtil.loadMessage("IFOUND_INDICATIONS", ParameterUtil.loadParameters(), environment));
 							
-				ProductInfo productInfo = ShopUtil.loadLowerPrice(productInfos);			
+				ProductInfo productInfo = ProductUtil.loadLowerPrice(productInfos);			
 				ParameterUtil.add(productInfo.getShopUrl());	
 				ParameterUtil.add(productInfo.getShop());
 				ParameterUtil.add(productInfo.getPrice().toString().replace(".", ","));

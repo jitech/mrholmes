@@ -1,7 +1,9 @@
 package com.mrholmes.util;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.core.env.Environment;
 
@@ -10,6 +12,62 @@ import com.mrholmes.enums.MessageOrigin;
 
 public class MessageUtil {
 
+	public static Map<String, Object> cleanText(String text, Environment environment){
+		
+		try {
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				text = text.toLowerCase();
+				
+				
+				String[] salutes = environment.getProperty("SALUTE_"+environment.getProperty("language")).split(",");	
+				String[] ignores = StringUtil.format(environment.getProperty("IGNORE_"+environment.getProperty("language"))).split(",");
+				
+				text = text.toLowerCase();
+				
+				boolean isSalute = false;
+				
+				for(int c=0 ; c< text.length(); c++) {				
+					for(int s=0 ; s<salutes.length ; s++) {					
+						if(text.contains(salutes[s].toLowerCase())) {
+							map.put("message", new Message(salutes[s]+"!", MessageOrigin.ROBOT, new Date()));
+							isSalute = true;
+							break;
+						}
+					}
+				}
+				
+				/* Remove salutes */
+				if(isSalute) {
+					for(int c=0 ; c< text.length(); c++) {				
+						for(int s=0 ; s<salutes.length ; s++) {					
+							if(text.contains(salutes[s].toLowerCase())) {
+								text = text.replaceAll(salutes[s].toLowerCase(), "");
+							}
+						}
+					}
+				}							
+				
+				/* Remove ignore caracteres */
+				String wordsByText[] = text.toLowerCase().split(" ");
+				for(int c=0 ; c<wordsByText.length ; c++) {
+					for(int i=0 ; i<ignores.length ; i++) {					
+						if(wordsByText[c].equals(ignores[i].toLowerCase())) {
+							text = text.replaceAll(wordsByText[c], "");
+						}
+					}
+				}
+				
+				map.put("text", text.trim());
+				
+				return map;
+				
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+	
 	public static Message loadMessage(String tag, List<Object> parameters, Environment environment) throws Exception{
 		
 		String message = environment.getProperty(tag+"_"+environment.getProperty("language"));
@@ -21,57 +79,5 @@ public class MessageUtil {
 		}
 		
 		return new Message(message, MessageOrigin.ROBOT, new Date());
-	}
-	
-	public static Message loadSalute(String text, Environment environment) throws Exception{
-		
-		String[] salutes = environment.getProperty("SALUTE_"+environment.getProperty("language")).split(",");			
-		String[] words = text.replaceAll("!", "").replaceAll("\\?", "").split(" ");
-				
-		if(salutes != null && salutes.length > 0 && words != null && words.length > 0) {		
-			for(int i = 0 ; i < words.length ; i++) {				
-				for(int j = 0 ; j < salutes.length ; j++) {										
-					if(words[i].toLowerCase().equals(StringUtil.format(salutes[j]).toLowerCase())) {												
-						return new Message("Olá!", MessageOrigin.ROBOT, new Date());
-					}
-				}
-			}
-		}
-		
-		return null;
-	}
-		
-	public static Message loadHumor(String text, Environment environment) throws Exception{
-		
-		String[] humor = StringUtil.format(environment.getProperty("HUMOR_"+environment.getProperty("language"))).split(",");			
-				
-		if(humor != null && humor.length > 0) {		
-			for(int i = 0 ; i < humor.length ; i++) {				
-				if(text.trim().toLowerCase().equals(humor[i].trim().toLowerCase())) {
-					return new Message("rs", MessageOrigin.ROBOT, new Date());
-				}
-			}
-		}
-		
-		return null;
-	}
-		
-	public static String loadTextByIgnoreWords(String text, Environment environment) throws Exception{
-		
-		String[] ignores = StringUtil.format(environment.getProperty("IGNORE_"+environment.getProperty("language"))).split(",");			
-		String[] words = text.split(" ");
-				
-		if(ignores != null && ignores.length > 0 && words != null && words.length > 0) {		
-			for(int i = 0 ; i < words.length ; i++) {				
-				for(int j = 0 ; j < ignores.length ; j++) {										
-					if(words[i].toLowerCase().equals(ignores[j].toLowerCase())) {												
-						text = text.toLowerCase().replaceFirst(ignores[j].toLowerCase(), "");											
-						break;
-					}
-				}
-			}
-		}
-		
-		return text.trim();
 	}
 }
