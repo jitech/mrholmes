@@ -12,6 +12,7 @@ import com.mrholmes.domain.ProductInfo;
 
 public class ProductUtil {
 
+	/* Load the product with lower price */
 	public static ProductInfo loadLowerPrice(List<ProductInfo> productInfos) {
 		
 		try {
@@ -32,6 +33,7 @@ public class ProductUtil {
 		}
 	}
 	
+	/* Load products by Google links */
 	public static List<ProductInfo> loadProductInfosByGoogleLinks(String text, List<String> shopLinks){
 		
 		try {
@@ -82,6 +84,7 @@ public class ProductUtil {
 		}				
 	}
 	
+	/* Load product description tag by site */
 	public static String loadDescriptionByURL(Document doc, String tagConfig) {
 		
 		try {			
@@ -102,6 +105,7 @@ public class ProductUtil {
 		}
 	}
 	
+	/* Verify if product is valid. Sometimes the google can be returned others products */
 	public static boolean isProductValid(String textByUser, String textByGoogle) {
 		
 		try {

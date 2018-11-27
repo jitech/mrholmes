@@ -42,7 +42,7 @@ public class MessageUtil {
 					for(int c=0 ; c< text.length(); c++) {				
 						for(int s=0 ; s<salutes.length ; s++) {					
 							if(text.contains(salutes[s].toLowerCase())) {
-								text = text.replaceAll(salutes[s].toLowerCase(), "");
+								text = text.replaceFirst(salutes[s].toLowerCase(), "");
 							}
 						}
 					}
@@ -53,7 +53,7 @@ public class MessageUtil {
 				for(int c=0 ; c<wordsByText.length ; c++) {
 					for(int i=0 ; i<ignores.length ; i++) {					
 						if(wordsByText[c].equals(ignores[i].toLowerCase())) {
-							text = text.replaceAll(wordsByText[c], "");
+							text = text.replaceFirst(wordsByText[c], "");
 						}
 					}
 				}

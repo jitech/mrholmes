@@ -27,7 +27,7 @@ public class MrholmesApplicationTests {
 	
 	@Test
 	public void loadMessage1() throws Exception{
-		List<Message> messages = HolmesAction.SAY_EVALUATION_PRODUCT.reply("moto g6 plus", environment);
+		List<Message> messages = HolmesAction.SAY_EVALUATION_PRODUCT.reply("Bom dia! Procura pra mim samsung galaxy s7", environment);
 		
 		for(Message message : messages){
 			MrHolmesUtil.say(message.getText());
