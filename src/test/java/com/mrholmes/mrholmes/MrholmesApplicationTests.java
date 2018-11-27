@@ -27,7 +27,7 @@ public class MrholmesApplicationTests {
 	
 	@Test
 	public void loadMessage1() throws Exception{
-		List<Message> messages = HolmesAction.SAY_EVALUATION_PRODUCT.reply("Bom dia! Procura pra mim samsung galaxy s7", environment);
+		List<Message> messages = HolmesAction.SAY_EVALUATION_PRODUCT.reply("panela elétrica walita", environment);
 		
 		for(Message message : messages){
 			MrHolmesUtil.say(message.getText());
@@ -36,8 +36,9 @@ public class MrholmesApplicationTests {
 		Assert.assertNotNull(messages);
 	}
 	
-	//@Test
+	@Test
 	public void loadMessage2() throws Exception{
+		
 		List<Message> messages = HolmesAction.SAY_EVALUATION_PRODUCT.reply("Bom dia! Procura pra mim o moto g6 plus", environment);
 		
 		for(Message message : messages){
@@ -47,7 +48,7 @@ public class MrholmesApplicationTests {
 		Assert.assertNotNull(messages);
 	}
 	
-	//@Test
+	@Test
 	public void loadPriceByCissaMagazine() throws Exception {
 		
 		
@@ -65,7 +66,7 @@ public class MrholmesApplicationTests {
 		Assert.assertNotNull(indications);
 	}
 	
-	//@Test
+	@Test
 	public void loadPriceByAmericanas() throws Exception {
 		
 		Double price = PriceUtil.loadPriceByURL(DocumentUtil.loadDocument("https://www.americanas.com.br/produto/133741110/smartphone-motorola-moto-g6-plus-64gb-dual-chip-android-oreo-8-0-tela-5-9-octa-core-2-2-ghz-4g-camera-12-5mp-dual-traseira-azul-topazio?epar=%7Bifpla%3A%7B_epar%7D%7D%7Bifdyn%3A%7B_epar%7D%7D%7Bifdbm%3Ads_at_ov_db_acom%24%7BCAMPAIGN_ID%7D%7D&opn=YSMESP&sellerId=00776574000660"), "span[class = sales-price]");		
@@ -82,7 +83,7 @@ public class MrholmesApplicationTests {
 		Assert.assertNotNull(indications);
 	}
 	
-	//@Test
+	@Test
 	public void loadPriceBySubmarino() throws Exception {
 		
 		Double price = PriceUtil.loadPriceByURL(DocumentUtil.loadDocument("https://www.submarino.com.br/produto/133741110/smartphone-motorola-moto-g6-plus-64gb-dual-chip-android-oreo-8-0-tela-5-9-octa-core-2-2-ghz-4g-camera-12-5mp-dual-traseira-azul-topazio?epar=314766&opn=XMLGOOGLE&sellerId=00776574000660"), "p[class = sales-price]");	
@@ -99,7 +100,7 @@ public class MrholmesApplicationTests {
 		Assert.assertNotNull(indications);
 	}
 	
-	//@Test
+	@Test
 	public void loadPriceByShopTime() throws Exception {
 		
 		Double price = PriceUtil.loadPriceByURL(DocumentUtil.loadDocument("https://www.shoptime.com.br/produto/133741110/smartphone-motorola-moto-g6-plus-64gb-dual-chip-android-oreo-8-0-tela-5-9-octa-core-2-2-ghz-4g-camera-12-5mp-dual-traseira-azul-topazio?pfm_carac=moto%20g6%20plus&pfm_index=0&pfm_page=search&pfm_pos=grid&pfm_type=search_page%20"), "p[class = sales-price]");		

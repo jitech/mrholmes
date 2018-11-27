@@ -19,35 +19,8 @@ public class MessageUtil {
 				
 				text = text.toLowerCase();
 				
-				
-				String[] salutes = environment.getProperty("SALUTE_"+environment.getProperty("language")).split(",");	
 				String[] ignores = StringUtil.format(environment.getProperty("IGNORE_"+environment.getProperty("language"))).split(",");
-				
-				text = text.toLowerCase();
-				
-				boolean isSalute = false;
-				
-				for(int c=0 ; c< text.length(); c++) {				
-					for(int s=0 ; s<salutes.length ; s++) {					
-						if(text.contains(salutes[s].toLowerCase())) {
-							map.put("message", new Message(salutes[s]+"!", MessageOrigin.ROBOT, new Date()));
-							isSalute = true;
-							break;
-						}
-					}
-				}
-				
-				/* Remove salutes */
-				if(isSalute) {
-					for(int c=0 ; c< text.length(); c++) {				
-						for(int s=0 ; s<salutes.length ; s++) {					
-							if(text.contains(salutes[s].toLowerCase())) {
-								text = text.replaceFirst(salutes[s].toLowerCase(), "");
-							}
-						}
-					}
-				}							
-				
+											
 				/* Remove ignore caracteres */
 				String wordsByText[] = text.toLowerCase().split(" ");
 				for(int c=0 ; c<wordsByText.length ; c++) {
@@ -58,8 +31,7 @@ public class MessageUtil {
 					}
 				}
 				
-				map.put("text", text.trim());
-				
+				map.put("text", text.trim());			
 				return map;
 				
 		}catch(Exception ex) {

@@ -6,7 +6,7 @@ import java.util.Map;
 public class StringUtil {
 
 	public static String[] loadStringIgnores() {
-		String tags[] = {"<",">","\"","=",":","!","meta","itemprop","price","reviewCount","content","div","class","pct","%","/","\n"," ","span","sales","-","svg","icon","prime","aria","labelledby","role","img","use","xlink","link","href","#","p","rating","star","counter"};
+		String tags[] = {"<",">","\"","=",":","!","meta","itemprop","price","reviewCount","content","div","class","pct","%","/","\n"," ","span","sales","-","svg","icon","prime","aria","labelledby","role","img","use","xlink","link","href","#","p","rating","star","counter","Avaliado por","clientes"};
 		return tags;
 	}
 	
@@ -19,7 +19,7 @@ public class StringUtil {
 		map.put("&eacute;", "é");
 		map.put("&ecirc;", "ê");
 		map.put("&iacute;", "í");
-		map.put("&ocirc;", "ó");
+		map.put("&oacute;", "ó");
 		map.put("&otilde;", "õ");
 		map.put("&ocirc;", "ô");		
 		map.put("&uacute;", "ú");

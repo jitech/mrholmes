@@ -50,7 +50,7 @@ public class ProductUtil {
 								
 									MrHolmesUtil.say("Acessando: "+shopLink);
 								
-									Document doc = Jsoup.connect(shopLink).timeout(6000).get();
+									Document doc = DocumentUtil.loadDocument(shopLink);
 							
 									String title = ProductUtil.loadDescriptionByURL(doc, ecommerce.getTagDescription());
 									
@@ -69,7 +69,7 @@ public class ProductUtil {
 							}
 														
 						}catch(Exception ex) {
-							ex.printStackTrace();
+							MrHolmesUtil.say("Não consegui acessar: "+shopLink);
 						}
 					}
 					

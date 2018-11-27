@@ -9,6 +9,7 @@ import org.springframework.core.env.Environment;
 import com.mrholmes.domain.Message;
 import com.mrholmes.domain.ProductInfo;
 import com.mrholmes.strategy.HolmesActionReply;
+import com.mrholmes.util.CouponUtil;
 import com.mrholmes.util.GoogleUtil;
 import com.mrholmes.util.IndicationUtil;
 import com.mrholmes.util.MessageUtil;
@@ -56,11 +57,18 @@ public enum HolmesAction implements HolmesActionReply {
 					ParameterUtil.add(new Double(((new Double(totalIndications)/new Double(totalReviews))*100)).intValue());			
 					messages.add(MessageUtil.loadMessage("IFOUND_INDICATIONS", ParameterUtil.loadParameters(), environment));
 							
-					ProductInfo productInfo = ProductUtil.loadLowerPrice(productInfos);			
-					ParameterUtil.add(productInfo.getShopUrl());	
+					ProductInfo productInfo = ProductUtil.loadLowerPrice(productInfos);								
 					ParameterUtil.add(productInfo.getShop());
 					ParameterUtil.add(productInfo.getPrice().toString().replace(".", ","));
+					ParameterUtil.add(productInfo.getShopUrl());
 					messages.add(MessageUtil.loadMessage("SHOP_LOWER_PRICE", ParameterUtil.loadParameters(), environment));	
+					
+					String coupon = CouponUtil.loadCouponByCuponomia(productInfo.getShop());
+					
+					if(coupon != null && !coupon.isEmpty()) {
+						ParameterUtil.add(coupon);
+						messages.add(MessageUtil.loadMessage("COUPON", ParameterUtil.loadParameters(), environment));
+					}
 					
 				}else {
 					messages.add(MessageUtil.loadMessage("NOT_FOUND", null, environment));
