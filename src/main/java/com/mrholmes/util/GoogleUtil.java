@@ -15,12 +15,6 @@ public class GoogleUtil {
 	
 	public static List<String> loadLinksByGoogle(String text) throws Exception{
 		
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");		
-		String site = "https://www.submarino.com.br/produto/133741110/smartphone-motorola-moto-g6-plus-64gb-dual-chip-android-oreo-8-0-tela-5-9-octa-core-2-2-ghz-4g-camera-12-5mp-dual-traseira-azul-topazio?epar=314766&opn=XMLGOOGLE&sellerId=00776574000660";
-		Document codeSite = DocumentUtil.loadDocument(site);
-		System.out.println("Description: "+ProductUtil.loadDescriptionByURL(codeSite, "meta[name = description]"));
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		
 		Document document = DocumentUtil.loadDocument("https://www.google.com.br/search?q="+text);
 				
 		List<Element> elements = DocumentUtil.loadElementsByTag(document, "a[class = plantl]");
@@ -36,9 +30,7 @@ public class GoogleUtil {
 			while(link_ == null && domain == null) {
 					
 				link_ = link.attr("href");
-				
-				System.out.println("Link encontrado: "+link);
-					
+								
 				for(String url : linksByGoogle) {
 															
 					while(domain == null) {

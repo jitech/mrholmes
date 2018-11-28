@@ -41,14 +41,8 @@ public class ProductUtil {
 					List<ProductInfo> productInfos = new ArrayList<ProductInfo>();
 					
 					for(String shopLink : shopLinks) {
-						
-						MrHolmesUtil.say("Carregando ecommerce: "+shopLink);
-						
+												
 						Ecommerce ecommerce = EcommerceUtil.loadEcommerceByUrl(shopLink);
-						
-						if(ecommerce == null) {
-							System.out.println("Ecommerce não configurado!");
-						}
 						
 						try {						
 								if(ecommerce != null) {
