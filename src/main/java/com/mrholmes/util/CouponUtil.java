@@ -12,7 +12,12 @@ public class CouponUtil {
 		try {
 				Document doc = DocumentUtil.loadDocument("https://www.cuponomia.com.br");
 				List<Element> elementsByDescription = doc.select("span[data-label = "+shopName+"]");		
-				String coupon = elementsByDescription.get(0).text();				
+				String coupon = elementsByDescription.get(0).text();
+				
+				if(coupon.equals("Pegar Desconto")) {
+					return null;
+				}
+				
 				return coupon.replaceAll("Ver Cupom", "").trim();
 				
 		}catch(Exception ex) {

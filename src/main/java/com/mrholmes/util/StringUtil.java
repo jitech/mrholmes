@@ -1,5 +1,6 @@
 package com.mrholmes.util;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,5 +30,10 @@ public class StringUtil {
 		}
 		
 		return words;
+	}
+	
+	public static String formatToMoney(Double value) {		
+		DecimalFormat decimal = new DecimalFormat("###,###,###,##0.00");
+		return decimal.format(value);
 	}
 }

@@ -7,19 +7,19 @@ import org.jsoup.nodes.Element;
 
 public class PriceUtil {
 
-	public static Double loadPriceByURL(Document doc, String tagConfig) {
+	public static Double loadPriceByURL(Document document, String tagConfig) {
 		
 		try {
 				String tags[] = StringUtil.loadStringIgnores();
 			
-				List<Element> elementsByPrice = doc.select(tagConfig);
+				List<Element> elements = DocumentUtil.loadElementsByTag(document, tagConfig);
 			
 				/* Get value inner tag */
-				String price = elementsByPrice.get(0).text();
+				String price = elements.get(0).text();
 				
 				if(price == null || price.isEmpty()) {
 					/* Get value and extract from inner tags */
-					price = elementsByPrice.get(0).toString();
+					price = elements.get(0).toString();
 				}
 			
 				for(int i=0 ; i<tags.length ; i++) {

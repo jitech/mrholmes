@@ -15,37 +15,44 @@ public class GoogleUtil {
 	
 	public static List<String> loadLinksByGoogle(String text) throws Exception{
 		
-		Document doc = DocumentUtil.loadDocument("https://www.google.com.br/search?q="+text);
+		Document document = DocumentUtil.loadDocument("https://www.google.com.br/search?q="+text);		
+		List<Element> elements = DocumentUtil.loadElementsByTag(document, "a[class = plantl]");
 		
 		List<String> linksByGoogle = new ArrayList<String>();
 		
-		for (Element link : doc.getElementsByClass("plantl")) {	
+		for (Element link : elements) {	
 			
-			if(link.toString().contains("class=\"plantl\"")) {
-			
-				boolean addLink = true;
-				String link_ = null;
-				String domain = null;
+			boolean addLink = true;
+			String link_ = null;
+			String domain = null;
 				
-				while(link_ == null && domain == null) {
+			while(link_ == null && domain == null) {
 					
-					link_ = link.attr("href");
+				link_ = link.attr("href");
 					
-					for(String url : linksByGoogle) {
+				for(String url : linksByGoogle) {
+															
+					while(domain == null) {
+						
 						URI uri = new URI(link_);
 						domain = uri.getHost();
-					
-						if(url.equals(link_) || url.contains(domain)) {
+						
+						if(domain != null && (url.equals(link_) || url.contains(domain))) {
 							addLink = false;
 							break;
 						}
 					}
-				}
-
-				if(addLink) {							
-					linksByGoogle.add(link_);
+					
+					if(!addLink) {
+						break;
+					}
 				}
 			}
+
+			if(addLink) {							
+				linksByGoogle.add(link_);
+			}
+			
 		}
 		
 		return linksByGoogle;

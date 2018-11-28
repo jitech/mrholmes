@@ -16,6 +16,7 @@ import com.mrholmes.util.MessageUtil;
 import com.mrholmes.util.ParameterUtil;
 import com.mrholmes.util.ProductUtil;
 import com.mrholmes.util.ReviewUtil;
+import com.mrholmes.util.StringUtil;
 
 public enum HolmesAction implements HolmesActionReply {
 	
@@ -44,10 +45,10 @@ public enum HolmesAction implements HolmesActionReply {
 			
 			List<ProductInfo> productInfos = ProductUtil.loadProductInfosByGoogleLinks(map.get("text").toString(), GoogleUtil.loadLinksByGoogle(map.get("text").toString()));
 			
-			Integer totalReviews = ReviewUtil.loadTotalReviewByProducts(productInfos);
-			Integer totalIndications = IndicationUtil.loadTotalIndicationByProducts(productInfos);
-			
 			if(productInfos != null && !productInfos.isEmpty()) {
+				
+				Integer totalReviews = ReviewUtil.loadTotalReviewByProducts(productInfos);
+				Integer totalIndications = IndicationUtil.loadTotalIndicationByProducts(productInfos);
 
 				if(totalReviews > 0 && totalIndications > 0) {
 					ParameterUtil.add(totalReviews);			
@@ -59,7 +60,7 @@ public enum HolmesAction implements HolmesActionReply {
 							
 					ProductInfo productInfo = ProductUtil.loadLowerPrice(productInfos);								
 					ParameterUtil.add(productInfo.getShop());
-					ParameterUtil.add(productInfo.getPrice().toString().replace(".", ","));
+					ParameterUtil.add(StringUtil.formatToMoney(productInfo.getPrice()));
 					ParameterUtil.add(productInfo.getShopUrl());
 					messages.add(MessageUtil.loadMessage("SHOP_LOWER_PRICE", ParameterUtil.loadParameters(), environment));	
 					

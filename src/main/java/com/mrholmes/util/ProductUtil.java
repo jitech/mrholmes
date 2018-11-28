@@ -3,7 +3,6 @@ package com.mrholmes.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
@@ -85,17 +84,17 @@ public class ProductUtil {
 	}
 	
 	/* Load product description tag by site */
-	public static String loadDescriptionByURL(Document doc, String tagConfig) {
+	public static String loadDescriptionByURL(Document document, String tagConfig) {
 		
-		try {			
-				List<Element> elementsByDescription = doc.select(tagConfig);
-			
+		try {							
+				List<Element> elements = DocumentUtil.loadElementsByTag(document, tagConfig);
+						
 				/* Get value inner tag */
-				String description = elementsByDescription.get(0).text();
+				String description = elements.get(0).text();
 				
 				if(description == null || description.isEmpty()) {
 					/* Get value and extract from inner tags */
-					description = elementsByDescription.get(0).toString();
+					description = elements.get(0).toString();
 				}
 			
 				return description;
@@ -109,7 +108,7 @@ public class ProductUtil {
 	public static boolean isProductValid(String textByUser, String textByGoogle) {
 		
 		try {
-				String textByUserArray[] = textByUser.toLowerCase().split(" ");
+				/*String textByUserArray[] = textByUser.toLowerCase().split(" ");
 				String textByGoogleArray[] = textByGoogle.toLowerCase().split(" ");
 				
 				int count = 0;
@@ -121,6 +120,16 @@ public class ProductUtil {
 							break;
 						}
 					}
+				}*/
+			
+				String textByUserArray[] = textByUser.toLowerCase().split(" ");
+								
+				int count = 0;
+				
+				for(int i=0 ; i<textByUserArray.length ; i++) {
+					if(textByGoogle.toLowerCase().contains(textByUserArray[i])) {
+						count++;
+					}	
 				}
 				
 				return textByUserArray.length == count;

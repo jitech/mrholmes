@@ -9,29 +9,34 @@ import com.mrholmes.domain.ProductInfo;
 
 public class ReviewUtil {
 
-	public static Integer loadQuantReviewByURL(Document doc, String tagConfig) {
+	public static Integer loadQuantReviewByURL(Document document, String tagConfig) {
 		
 		try {
-				String tags[] = StringUtil.loadStringIgnores();
+				if(tagConfig != null) {
+					
+					String tags[] = StringUtil.loadStringIgnores();
 			
-				List<Element> elementsByReview = doc.select(tagConfig);
+					List<Element> elements = DocumentUtil.loadElementsByTag(document, tagConfig);
 							
-				/* Get value inner tag */
-				String review = elementsByReview.get(0).text();
+					/* Get value inner tag */
+					String review = elements.get(0).text();
 				
-				if(review == null || review.isEmpty()) {
-					/* Get value and extract from inner tags */
-					review = elementsByReview.get(0).toString();
-				}
+					if(review == null || review.isEmpty()) {
+						/* Get value and extract from inner tags */
+						review = elements.get(0).toString();
+					}
 			
-				for(int i=0 ; i<tags.length ; i++) {
-					review = review.replaceAll(tags[i], "");
-				}			
+					for(int i=0 ; i<tags.length ; i++) {
+						review = review.replaceAll(tags[i], "");
+					}			
 				
-				review = review.replace("(", "");
-				review = review.replace(")", "");
+					review = review.replace("(", "");
+					review = review.replace(")", "");
 				
-				return Integer.parseInt(review);
+					return Integer.parseInt(review);
+				}
+				
+				return 0;
 			
 		}catch(Exception ex) {
 			return null;

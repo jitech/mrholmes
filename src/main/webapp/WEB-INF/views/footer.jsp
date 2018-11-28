@@ -14,8 +14,7 @@
 		
 		<c:if test="${showChat}">
 			<div id="form-human-message" class="form-human-message">
-				<input id="human-message" class="input-human-message" placeholder="Digite aqui..."/>
-				<button id="human_button" class="button-human-message" onclick="sendMessage()" >ENVIAR</button>		
+				<input id="input-human-message" class="input-human-message" placeholder="Digite aqui..."/>
 			</div>
 		</c:if>
 		
