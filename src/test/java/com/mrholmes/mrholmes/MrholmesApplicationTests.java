@@ -1,7 +1,10 @@
 package com.mrholmes.mrholmes;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,15 +43,13 @@ public class MrholmesApplicationTests {
 	@Test
 	public void loadMessage2() throws Exception{
 		
-		System.out.println(StringUtil.formatToMoney(1000.0));
+		Document document = DocumentUtil.loadDocument("https://172.217.28.4/search?q=moto g6 plus");
 		
-		//List<Message> messages = HolmesAction.SAY_EVALUATION_PRODUCT.reply("Fone de Ouvido Philips SHL5000", environment);
-		
-		//for(Message message : messages){
-		//	MrHolmesUtil.say(message.getText());
-		//}
-		
-		//Assert.assertNotNull(messages);
+		List<Element> elements = DocumentUtil.loadElementsByTag(document, "a[class = plantl]");
+				
+		for (Element link : elements) {				
+			System.out.println(link.attr("href"));
+		}
 	}
 	
 	//@Test

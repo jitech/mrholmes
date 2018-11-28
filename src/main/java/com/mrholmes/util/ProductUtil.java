@@ -35,19 +35,23 @@ public class ProductUtil {
 	/* Load products by Google links */
 	public static List<ProductInfo> loadProductInfosByGoogleLinks(String text, List<String> shopLinks){
 		
-		try {
+		try {			
 				if(shopLinks != null && !shopLinks.isEmpty()) {
 					
 					List<ProductInfo> productInfos = new ArrayList<ProductInfo>();
 					
 					for(String shopLink : shopLinks) {
 						
+						MrHolmesUtil.say("Carregando ecommerce: "+shopLink);
+						
 						Ecommerce ecommerce = EcommerceUtil.loadEcommerceByUrl(shopLink);
+						
+						if(ecommerce == null) {
+							System.out.println("Ecommerce não configurado!");
+						}
 						
 						try {						
 								if(ecommerce != null) {
-								
-									MrHolmesUtil.say("Acessando: "+shopLink);
 								
 									Document doc = DocumentUtil.loadDocument(shopLink);
 							

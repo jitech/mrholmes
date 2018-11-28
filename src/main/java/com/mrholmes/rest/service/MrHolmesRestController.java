@@ -21,6 +21,7 @@ public class MrHolmesRestController extends GenericController {
     public List<Message> talk(@RequestParam(value="topic", required = true, defaultValue = "SAY_WELCOME") String topic, @RequestParam(value="text", required = false) String text) throws Exception{ 		 
 		
 		try {			
+				System.out.println("Acessando serviço...");
 				return HolmesAction.valueOf(HolmesAction.class, topic).reply(text, environment);
 						
 		}catch(Exception ex) {		

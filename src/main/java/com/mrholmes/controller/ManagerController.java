@@ -14,6 +14,7 @@ public class ManagerController extends GenericController{
 	private ModelAndView index(Model model) throws Exception {	
 		model.addAttribute("page", "chat");
 		model.addAttribute("showChat", true);
+		System.out.println("Carregou!s");
 		return new ModelAndView("/page");
 	}
 	
