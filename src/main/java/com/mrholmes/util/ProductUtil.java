@@ -46,6 +46,8 @@ public class ProductUtil {
 						
 						try {						
 								if(ecommerce != null) {
+									
+									MrHolmesUtil.say("Acessando: "+shopLink);
 								
 									Document doc = DocumentUtil.loadDocument(shopLink);
 							

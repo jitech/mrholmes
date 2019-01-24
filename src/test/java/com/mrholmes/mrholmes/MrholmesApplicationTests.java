@@ -1,6 +1,5 @@
 package com.mrholmes.mrholmes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.jsoup.nodes.Document;
@@ -20,7 +19,6 @@ import com.mrholmes.util.IndicationUtil;
 import com.mrholmes.util.MrHolmesUtil;
 import com.mrholmes.util.PriceUtil;
 import com.mrholmes.util.ReviewUtil;
-import com.mrholmes.util.StringUtil;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
